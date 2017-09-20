@@ -9,11 +9,23 @@ module.exports = function (app) {
   });
 
   app.get("/allTables", function (req, res) {
-    res.json(tableJson);
+    connection.query('SELECT * FROM customer WHERE waitlist = 0', (err, data) => {
+      var responseData = [];
+      for (var d in data) {
+        responseData.push({customerName: data[d].customerName, customerEmail: data[d].customerEmail, phoneNumber: data[d].phoneNumber, customerID: data[d].customerID});
+      }
+      res.json(responseData);
+    });
   });
 
   app.get("/allWait", function (req, res) {
-    res.json(waitJson);
+    connection.query('SELECT * FROM customer WHERE waitlist = 1', (err, data) => {
+      var responseData = [];
+      for (var d in data) {
+        responseData.push({customerName: data[d].customerName, customerEmail: data[d].customerEmail, phoneNumber: data[d].phoneNumber, customerID: data[d].customerID});
+      }
+      res.json(responseData);
+    });
   });
 
   app.post("/api/waitlist", function (req, res) {
