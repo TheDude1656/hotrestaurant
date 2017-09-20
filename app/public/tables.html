@@ -74,10 +74,10 @@
             tableCount ++;
             console.log(reservations[res].customerID);
             var newTable = $("<div class='panel panel-default'>");
-            var waitNumber = $("<p>").html(tableNum + " | ");
-            var resInfo = $("<p>").html("Name: " + reservations[res].customerID);
-            newTable.prepend(resInfo);
-            $("#tableRes").append(waitNumber,newTable);
+            var waitNumber = $("<p>").html("<span class='badge'>" + tableNum);
+            var resInfo = $("<p>").html(reservations[res].customerID);
+            newTable.prepend(waitNumber, resInfo);
+            $("#tableRes").append(newTable);
           }
         });
 
@@ -88,10 +88,10 @@
               waitCount ++;
               console.log(reservations[res].customerID);
               var newTable = $("<div class='panel panel-default'>");
-              var waitNumber = $("<p>").html(waitNum + " | ");
-              var resInfo = $("<p>").html("Name: " + reservations[res].customerID);
-              newTable.prepend(resInfo);
-              $("#waitDiv").append(waitNumber,newTable);
+              var waitNumber = $("<p>").html("<span class='badge'>" + waitNum);
+              var resInfo = $("<p>").html(reservations[res].customerID);
+              newTable.prepend(waitNumber, resInfo);
+              $("#waitDiv").append(newTable);
             }
           });
 
