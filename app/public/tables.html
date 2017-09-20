@@ -80,12 +80,12 @@
                 newTable.prepend(waitNumber, resInfo);
                 $("#tableRes").append(newTable);
               }
-
             }
           });
 
       } else {
         console.log("Tables full, add to waitlist");
+        waitJson.push(reservations);
         alert("Adding to waitlist");
 
       }
