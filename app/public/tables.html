@@ -66,7 +66,7 @@
       var waitNum = 0;
       var waitCount = 0;
 
-      if (tableCount <= 5) {
+      if (tableCount < 5) {
         $.get(currentURL + "/allTables",
           function(reservations) {
             for (let res in reservations) {

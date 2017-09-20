@@ -1,5 +1,4 @@
-var tableList = [
-  {
+var tableList = [{
     "customerName": "Oscar",
     "customerEmail": "livesInATrashCan@gmail.com",
     "customerID": "daGrouch",
@@ -10,6 +9,13 @@ var tableList = [
     "phoneNumber": "212-456-1234",
     "customerEmail": "gimmeeBurgers@glownwiener.fart",
     "customerID": "RubbleRubble"
+  },
+  {
+    "customerName": "Humpty",
+    "customerNumber": "526262625",
+    "customerEmail": "bigNose@Dumpty.com",
+    "customerID": "HumptyDzz",
+    "routeName": "humpty"
   }
 ]
 
