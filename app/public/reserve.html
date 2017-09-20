@@ -88,6 +88,10 @@
         $.post("/api/new", newRes)
           .done(function(data) {
             console.log(data);
+            $("#resName").val('');
+            $("#resPhone").val('');
+            $("#resEmail").val('');
+            $("#resId").val('');
             alert("Adding Reservation");
           });
 
