@@ -72,12 +72,15 @@
             for (let res in reservations) {
               tableNum++;
               tableCount++;
-              console.log(reservations[res].customerID);
-              var newTable = $("<div class='panel panel-default'>");
-              var waitNumber = $("<p>").html("<span class='label label-primary'>" + tableNum);
-              var resInfo = $("<p>").html(reservations[res].customerID);
-              newTable.prepend(waitNumber, resInfo);
-              $("#tableRes").append(newTable);
+              if(res < 5){
+                console.log(reservations[res].customerID);
+                var newTable = $("<div class='panel panel-default'>");
+                var waitNumber = $("<p>").html("<span class='label label-primary'>" + tableNum);
+                var resInfo = $("<p>").html(reservations[res].customerID);
+                newTable.prepend(waitNumber, resInfo);
+                $("#tableRes").append(newTable);
+              }
+
             }
           });
 
