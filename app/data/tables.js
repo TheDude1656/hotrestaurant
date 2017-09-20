@@ -6,7 +6,7 @@ var tableList = [
     "phoneNumber": "000-000-0000"
   },
   {
-    "customerName": "Hamburlger",
+    "customerName": "Hamburgaler",
     "phoneNumber": "212-456-1234",
     "customerEmail": "gimmeeBurgers@glownwiener.fart",
     "customerID": "RubbleRubble"
