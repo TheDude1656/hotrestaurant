@@ -1,0 +1,14 @@
+<script type="text/javascript">
+
+$(function() {
+
+var currentURL = window.location.origin;
+console.log(currentURL + "/allTables");
+
+$.post(currentURL + "/allTables", {customerName: customerName},
+         function(data) {
+           data = $.parseJSON(data);
+          console.log(data);
+        });
+
+  });
