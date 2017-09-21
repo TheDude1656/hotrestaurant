@@ -9,10 +9,16 @@ module.exports = function (app) {
   });
 
   app.get("/allTables", function (req, res) {
+    moveWaitList();
     connection.query('SELECT * FROM customer WHERE waitlist = 0', (err, data) => {
       var responseData = [];
       for (var d in data) {
-        responseData.push({customerName: data[d].customerName, customerEmail: data[d].customerEmail, phoneNumber: data[d].phoneNumber, customerID: data[d].customerID});
+        responseData.push({
+          customerName: data[d].customerName,
+          customerEmail: data[d].customerEmail,
+          phoneNumber: data[d].phoneNumber,
+          customerID: data[d].customerID
+        });
       }
       res.json(responseData);
     });
@@ -22,7 +28,12 @@ module.exports = function (app) {
     connection.query('SELECT * FROM customer WHERE waitlist = 1', (err, data) => {
       var responseData = [];
       for (var d in data) {
-        responseData.push({customerName: data[d].customerName, customerEmail: data[d].customerEmail, phoneNumber: data[d].phoneNumber, customerID: data[d].customerID});
+        responseData.push({
+          customerName: data[d].customerName,
+          customerEmail: data[d].customerEmail,
+          phoneNumber: data[d].phoneNumber,
+          customerID: data[d].customerID
+        });
       }
       res.json(responseData);
     });
@@ -36,7 +47,7 @@ module.exports = function (app) {
     var addRes = req.body;
     addRes.routeName = addRes.customerName.replace(/\s+/g, "").toLowerCase();
 
-    console.log(addRes);
+    //console.log(addRes);
 
     tableJson.push(addRes);
 
@@ -48,10 +59,23 @@ module.exports = function (app) {
     }, function (err, res) {
       if (err) throw err;
       console.log("Customer added to db");
+
     });
 
     res.json(addRes);
   });
 
+  function moveWaitList() {
+    connection.query("SELECT COUNT(*) FROM customer WHERE waitlist = 0",
+      (err, count) => {
+        console.log(count[0]['COUNT(*)']);
+        if (count[0]['COUNT(*)'] < 5) {
+          connection.query("UPDATE customer SET waitlist = 0 WHERE waitlist = 1 ORDER BY position LIMIT 1", (err) => {
+            if (err) throw err;
+          })
+        }
+      }
+    );
+  }
 
 }

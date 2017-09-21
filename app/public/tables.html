@@ -57,7 +57,7 @@
   <!--closes main container-->
 
   <script type="text/javascript">
-    $(function() {
+    $(function () {
 
       var currentURL = window.location.origin;
 
@@ -67,12 +67,14 @@
       var waitCount = 0;
 
       if (tableCount < 5) {
+        console.log(tableCount);
         $.get(currentURL + "/allTables",
-          function(reservations) {
+          function (reservations) {
             for (let res in reservations) {
               tableNum++;
               tableCount++;
-              if(res < 5){
+              if (res < 5) {
+                console.log(res);
                 console.log(reservations[res].customerID);
                 var newTable = $("<div class='panel panel-default'>");
                 var waitNumber = $("<p>").html("<span class='label label-primary'>" + tableNum);
@@ -90,19 +92,19 @@
 
       }
 
-        $.get(currentURL + "/allWait",
-          function(reservations) {
-            for (let res in reservations) {
-              waitNum++;
-              waitCount++;
-              console.log(reservations[res].customerID);
-              var newTable = $("<div class='panel panel-default'>");
-              var waitNumber = $("<p>").html("<span class='label label-primary'>" + waitNum);
-              var resInfo = $("<p>").html(reservations[res].customerID);
-              newTable.prepend(waitNumber, resInfo);
-              $("#waitDiv").append(newTable);
-            }
-          });
+      $.get(currentURL + "/allWait",
+        function (reservations) {
+          for (let res in reservations) {
+            waitNum++;
+            waitCount++;
+            console.log(reservations[res].customerID);
+            var newTable = $("<div class='panel panel-default'>");
+            var waitNumber = $("<p>").html("<span class='label label-primary'>" + waitNum);
+            var resInfo = $("<p>").html(reservations[res].customerID);
+            newTable.prepend(waitNumber, resInfo);
+            $("#waitDiv").append(newTable);
+          }
+        });
 
 
     });
